@@ -241,6 +241,9 @@ autocmd BufWrite *.html :call DeleteTrailingWS()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Session options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Reference:
+"   http://vim.wikia.com/wiki/Go_away_and_come_back
+"   http://vim.wikia.com/wiki/Working_with_multiple_sessions
 function! MakeSession()
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
     if (filewritable(b:sessiondir) != 2)
@@ -265,7 +268,6 @@ endfunction
 
 au VimEnter * nested :call LoadSession()
 au VimLeave * :call MakeSession()
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
