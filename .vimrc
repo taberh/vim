@@ -32,6 +32,7 @@ nmap <leader>w :w!<cr>
 
 " Fast quiting
 nmap <leader>q :q!<cr>
+nmap <leader>qq :qa!<cr>
 
 " Fast remove highlight search
 nmap <leader>/ :noh<cr>
