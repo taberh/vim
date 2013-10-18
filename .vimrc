@@ -201,15 +201,13 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
-map <leader>n :tabnew<cr>
-map <leader>o :tabonly<cr>
-map <leader>c :tabclose<cr>
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>ts :tab split<cr>
 map <leader>m :tabmove
 map <leader>l :tabn<cr>
 map <leader>h :tabp<cr>
-map <leader>f :tabfirst<cr>
-map <leader>la :tablast<cr>
-map <leader>s :tab split<cr>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -244,11 +242,14 @@ autocmd BufWrite *.html :call DeleteTrailingWS()
 "   http://vim.wikia.com/wiki/Go_away_and_come_back
 "   http://vim.wikia.com/wiki/Working_with_multiple_sessions
 function! MakeSession()
+    exe 'NERDTreeTabsClose'
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+
     if (filewritable(b:sessiondir) != 2)
         exe 'silent !mkdir -p ' b:sessiondir
         redraw!
     endif
+
     let b:filename = b:sessiondir . '/session.vim'
     exe "mksession! " . b:filename
 endfunction
@@ -256,9 +257,11 @@ endfunction
 function! LoadSession()
     let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
     let b:sessionfile = b:sessiondir . "/session.vim"
+
     if argc() == 0
         if (filereadable(b:sessionfile))
             exe 'source ' b:sessionfile
+            exe 'NERDTreeTabsOpen'
         else
             echo "No session loaded."
         endif
@@ -291,13 +294,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ZERDTree
-map <leader>fe :NERDTree<cr>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -317,3 +313,33 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins management for Bundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible               " be iMproved
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+
+" My Bundles here:
+" original repos on github
+"Bundle 'tpope/vim-fugitive'
+" vim-scripts repos
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (ie. when working on your own plugin)
+"Bundle 'file:///Users/gmarik/path/to/plugin'
+
+
+" Pressing ,n to toggle NERDTreeTabs 
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
