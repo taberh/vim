@@ -18,8 +18,7 @@
 set history=500
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -122,7 +121,7 @@ set statusline=\ %F%m%r%h\ %w\ \ CWD:\%r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 " Enabled syntax highlighting
 syntax enable
 
-colorscheme desert
+colorscheme asmdev
 set cursorline 
 "hi CursorLine   cterm=NONE ctermbg=grey ctermfg=black 
 "hi CursorColumn cterm=NONE ctermbg=grey ctermfg=black
@@ -294,6 +293,12 @@ map <leader>s? z=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ZERDTree
+map <leader>fe :NERDTree<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! VisualSelection(direction) range 
@@ -312,6 +317,3 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
-
-
