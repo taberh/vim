@@ -210,6 +210,9 @@ map <leader>m :tabmove
 map <leader>l :tabn<cr>
 map <leader>h :tabp<cr>
 
+" Pressing ,c to quick execute shell command
+map <Leader>c :!command 
+
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
@@ -344,3 +347,4 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 " Pressing ,n to toggle NERDTreeTabs 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
