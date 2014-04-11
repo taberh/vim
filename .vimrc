@@ -17,8 +17,8 @@
 " Set how many lines of history VIM has to remember
 set history=500
 
-" Enable filetype plugins
-filetype plugin indent on
+" Enabled syntax highlighting
+syntax enable
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -119,8 +119,6 @@ set statusline=\ %F%m%r%h\ %w\ \ CWD:\%r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enabled syntax highlighting
-syntax enable
 
 colorscheme asmdev
 set cursorline 
@@ -298,6 +296,15 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+" Pressing ,n to toggle NERDTreeTabs 
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+" Pressing ,= align 
+noremap <leader>= :Tabularize /=<cr>
+
+" Pressing ,: align 
+noremap <leader>; :Tabularize /:<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -322,6 +329,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins management for Bundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off
+
 set nocompatible               " be iMproved
 
 set rtp+=~/.vim/bundle/vundle/
@@ -332,6 +341,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'godlygeek/tabular'
+Bundle 'digitaltoad/vim-jade'
 
 " My Bundles here:
 " original repos on github
@@ -344,7 +355,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 
-
-" Pressing ,n to toggle NERDTreeTabs 
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
-
+" Enable filetype plugins
+filetype on
+filetype plugin on
+filetype indent on
